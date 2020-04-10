@@ -1,0 +1,31 @@
+# DEVELOPER NOTE: This is a YAML configuration file.
+#
+#   https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html
+#
+# By default, Spring will try to find configuration files here. A cool thing about YAML is that you can actually have
+# more than one "file" in the same file. These files are delimited with three hyphens "---". In this application's case,
+# configurations are captured in a class called AppConfiguration (in the /config package).
+#
+# Spring knows which one of these files to use based on the Spring profile set in the operating system environment
+# variable SPRING_PROFILES_ACTIVE. For web services, environment variables are usually set during deployment using
+# whatever virtual machine or container technology is being used... for example, in a Docker image.
+
+# TEST profile
+---
+spring:
+  profiles: test        # The Spring profile that will be used if SPRING_PROFILES_ACTIVE = test
+configName: demo-test   # A configuration property of our own arbitrary name and value
+environment: test       # Another configuration property of our own arbitrary name and value
+servers:                # A list in YAML. The property "servers" is a List<String>
+  - www.abc.test.com
+  - www.xyz.test.com
+
+# PROD profile
+---
+spring:
+#  profiles: prod        # The Spring profile that will be used if SPRING_PROFILES_ACTIVE = prod
+configName: demo-prod
+environment: production
+servers:
+  - www.abc.com
+  - www.xyz.com
