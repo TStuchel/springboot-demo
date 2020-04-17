@@ -3,7 +3,7 @@
 // Gradle, Gradle is installed to /usr/local/opt/gradle/libexec
 buildscript {
     ext {
-        groovyVersion = '2.5.10' // '3.0.2'
+        groovyVersion = '2.5.11' // '3.0.2'
         spockVersion = '1.3-groovy-2.5' // '2.0-M2-groovy-3.0'
         lombokVersion = '1.18.12'
     }
@@ -22,6 +22,7 @@ version '1.0-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
+    jcenter()
     mavenCentral()
 }
 
@@ -44,26 +45,21 @@ dependencies {
     // DEVELOPER NOTE: Normally, we would only use H2 as a testCompile dependency. But this demo app doesn't have a
     // "real" database server anywhere to talk to, so we have to use H2 as this apps own private in-memory, throw-away
     // database.
-    compile group: 'com.h2database', name: 'h2', version: '1.4.200'
+    implementation group: 'com.h2database', name: 'h2', version: '1.4.200'
 
     // Spock/Test Dependencies
-    testImplementation group: 'org.codehaus.groovy', name: 'groovy-all', version: '3.0.2'
+    // DEVELOPER NOTE: Do not add JUnit 5 dependencies or useJUnitPlatform(). Spock takes care of it. You can also
+    // ignore the "WARNING: An illegal reflective access operation has occurred" messages. These are known warnings by
+    // the Spock team, are harmless, and will be resolved in a future version.
     testImplementation platform(group: 'org.spockframework', name: 'spock-bom', version: spockVersion)
+    testImplementation group: 'org.codehaus.groovy', name: 'groovy-all', version: groovyVersion
     testImplementation group: 'org.spockframework', name: 'spock-core', version: spockVersion
-    testImplementation group: 'net.bytebuddy', name: 'byte-buddy', version: '1.10.9'
-    testImplementation group: 'org.objenesis', name: 'objenesis', version: '3.1'
     testImplementation group: 'uk.co.jemos.podam', name: 'podam', version: '7.2.3.RELEASE'
+    testImplementation group: 'com.athaydes', name: 'spock-reports', version: '1.7.1'
 
     // Spring/Test Dependencies
     testImplementation group: 'org.springframework', name: 'spring-test'
     testImplementation group: 'org.springframework.boot', name: 'spring-boot-test-autoconfigure'
     testImplementation group: 'org.spockframework', name: 'spock-spring', version: spockVersion
 
-}
-
-test {
-    useJUnitPlatform()
-    testLogging {
-        events "passed", "skipped", "failed"
-    }
 }

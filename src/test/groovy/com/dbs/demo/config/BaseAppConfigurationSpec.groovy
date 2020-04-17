@@ -1,7 +1,5 @@
 package com.dbs.demo.config
 
-import org.junit.jupiter.api.extension.ExtendWith
-import org.springframework.test.context.junit.jupiter.SpringExtension
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.ConfigFileApplicationContextInitializer
 import org.springframework.boot.test.context.SpringBootTest
@@ -25,7 +23,7 @@ import spock.lang.Specification
  * <p>
  * https://12factor.net/
  */
-@ExtendWith(SpringExtension)
+@SpringBootTest
 @ContextConfiguration(classes = AppConfiguration, initializers = ConfigFileApplicationContextInitializer)
 abstract class BaseAppConfigurationSpec extends Specification {
 

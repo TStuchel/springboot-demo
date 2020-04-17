@@ -8,9 +8,8 @@ import com.dbs.demo.customer.app.CustomerService
 import com.dbs.demo.customer.model.Customer
 import com.dbs.demo.exception.BusinessException
 import org.apache.commons.lang3.RandomUtils
-import org.junit.jupiter.api.extension.ExtendWith
+import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ContextConfiguration
-import org.springframework.test.context.junit.jupiter.SpringExtension
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
 
@@ -18,13 +17,13 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
 /**
- * DEVELOPER NOTE: The @ExtendWith(SpringExtension.class) and @ContextConfiguration(classes = {Application.class}) is
+ * DEVELOPER NOTE: The @SpringBootTest and @ContextConfiguration(classes = [Application, RestExceptionHandler]) is
  * needed so that a "real" SpringBoot context will be initialized. We want this so that we can make "real" REST calls.
  * While it is technically possible to test directly against the CustomerController class, it's useful to make sure that
  * we've wired up all of those @RestController annotations correctly, including properly handling HTTP status code
  * responses, URL mappings, and content type configurations.
  */
-@ExtendWith(SpringExtension)
+@SpringBootTest
 @ContextConfiguration(classes = [Application, RestExceptionHandler])
 class CustomerControllerSpec extends BaseSpecification {
 
