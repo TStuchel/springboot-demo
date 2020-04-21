@@ -12,6 +12,18 @@ import spock.lang.Unroll
  */
 class CustomerServiceSpec extends BaseSpecification {
 
+    // ------------------------------------------------ DOCUMENTATION --------------------------------------------------
+
+    def setupSpec() {
+        reportHeader """
+        <br/>
+        The Customer service is the primary application layer service for coordinating actions against Customer domain
+        entities.
+        <br/>
+        """
+    }
+
+
     // ------------------------------------------------- DEPENDENCIES --------------------------------------------------
 
     private CustomerRepository customerRepository
@@ -31,7 +43,7 @@ class CustomerServiceSpec extends BaseSpecification {
         customerService = new CustomerService(customerRepository)
     }
 
-    def "Find customer with valid ID"() {
+    def "Find a customer by its ID"() {
 
         // --
         given: "a valid customer ID and a customer with that ID is in the system"
@@ -50,7 +62,7 @@ class CustomerServiceSpec extends BaseSpecification {
         actualCustomer == expectedCustomer
     }
 
-    def "Finding a customer that does not exist"() {
+    def "Find a customer that does not exist"() {
 
         // --
         given: "a customer ID"
@@ -68,7 +80,7 @@ class CustomerServiceSpec extends BaseSpecification {
         actualCustomer == null
     }
 
-    def "Finding customer using an invalid ID"() {
+    def "Find a customer using an invalid ID"() {
 
         given: "an invalid customer ID"
         def customerId = -999

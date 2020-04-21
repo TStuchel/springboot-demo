@@ -6,13 +6,27 @@ import com.dbs.demo.customer.model.Customer
 
 class CustomerTranslatorSpec extends BaseSpecification {
 
+    // ------------------------------------------------ DOCUMENTATION --------------------------------------------------
+
+    def setupSpec() {
+        reportHeader """
+        <br/>
+        An anti-corruption layer exists between the web API layer and the application layer. The contract to change or
+        create the state of a Customer is first <strong>translated</strong> from the JSON-deserialized contract object 
+        to a domain entity understood by the application layer. After the application layer processes the command, the 
+        new state of the entity is translated back to a JSON-serializable response contract.
+        <br/>
+        """
+    }
+
+
     // ------------------------------------------------ SPECIFICATIONS -------------------------------------------------
 
     /**
      * DEVELOPER NOTE: There should be a test that verifies a contract can be mapped where all of the fields haven't
      * been set. This/protects against null pointer exceptions and verifies default values given to optional fields.
      */
-    def "Translate to entity from empty contract"() {
+    def "Translate an empty Customer contract to a Customer domain entity"() {
 
         // --
         given: "an empty Customer contract"
@@ -36,7 +50,7 @@ class CustomerTranslatorSpec extends BaseSpecification {
     /**
      * DEVELOPER NOTE: There should be a test that verifies that EVERY field is mapped.
      */
-    def "Translate to entity from fully populated contract"() {
+    def "Translate a fully populated Customer contract to a Customer domain entity"() {
 
         // --
         given: "a fully populated Customer contract"
@@ -61,7 +75,7 @@ class CustomerTranslatorSpec extends BaseSpecification {
      * DEVELOPER NOTE: There should be a test that verifies an entity can be mapped where all of the fields haven't been
      * set. This/protects against null pointer exceptions and verifies default values given to optional fields.
      */
-    def "Translate to contract from empty entity"() {
+    def "Translate an empty Customer domain entity to a Customer contract"() {
 
         // --
         given: "an empty Customer entity"
@@ -84,7 +98,7 @@ class CustomerTranslatorSpec extends BaseSpecification {
     /**
      * DEVELOPER NOTE: There should be a test that verifies that EVERY field is mapped.
      */
-    def "Translate to contract from fully populated entity"() {
+    def "Translate a fully populated Customer domain entity to a Customer contract"() {
 
         // --
         given: "a fully populated Customer entity"

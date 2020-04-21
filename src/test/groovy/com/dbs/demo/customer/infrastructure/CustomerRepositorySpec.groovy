@@ -21,6 +21,17 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager
 @DataJpaTest
 class CustomerRepositorySpec extends BaseSpecification {
 
+    // ------------------------------------------------ DOCUMENTATION --------------------------------------------------
+
+    def setupSpec() {
+        reportHeader """
+        <br/>
+        The Customer repository handles all interactions with the database to store and retrieve Customer entity data.
+        <br/>
+        """
+    }
+
+
     // ----------------------------------------------- MEMBER VARIABLES ------------------------------------------------
 
     @Autowired // <-- Required pattern when using @DataJpaTest so that it can wire in the JPA manager instance

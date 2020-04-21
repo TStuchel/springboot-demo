@@ -9,9 +9,21 @@ import org.springframework.test.context.ActiveProfiles
 @ActiveProfiles("test")
 class TestAppConfigurationSpec extends BaseAppConfigurationSpec {
 
+    // ------------------------------------------------ DOCUMENTATION --------------------------------------------------
+
+    def setupSpec() {
+        reportHeader """
+        <br/>
+        The application dynamically loads configuration based on the current active profile as specified by the current
+        execution environment. This specification deals with loading test configurations.
+        <br/>
+        """
+    }
+
+
     // ------------------------------------------------ SPECIFICATIONS -------------------------------------------------
 
-    def "Loads test configuration"() {
+    def "Load test configuration"() {
 
         // --
         given: "the application configuration file has test values for all properties"

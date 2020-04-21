@@ -27,6 +27,18 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ContextConfiguration(classes = [Application, RestExceptionHandler])
 class CustomerControllerSpec extends BaseSpecification {
 
+    // ------------------------------------------------ DOCUMENTATION --------------------------------------------------
+
+    def setupSpec() {
+        reportHeader """
+        <br/>
+        The Customer controller is part of the API layer of the application and provides REST endpoints for retrieving 
+        and manipulating Customer entities via web service calls using JSON requests and responses.
+        <br/>
+        """
+    }
+
+
     // ------------------------------------------------- DEPENDENCIES --------------------------------------------------
 
     private CustomerTranslator customerTranslator = new CustomerTranslator()
@@ -91,7 +103,7 @@ class CustomerControllerSpec extends BaseSpecification {
 
     }
 
-    def "Missing customer IDs should throw a NOT_FOUND"() {
+    def "Respond with NOT_FOUND given an unknown customer ID"() {
 
         // --
         given: "an ID of a customer that is not in the system"
@@ -114,7 +126,7 @@ class CustomerControllerSpec extends BaseSpecification {
         response.getContentAsByteArray().length == 0
     }
 
-    def "Invalid customer IDs should throw a BAD_REQUEST"() {
+    def "Respond with BAD_REQUEST if given an invalid customer ID"() {
 
         // --
         given: "an invalid customer ID"
@@ -141,7 +153,7 @@ class CustomerControllerSpec extends BaseSpecification {
         error.getMessage() == message
     }
 
-    def "Unexpected errors should return INTERNAL_SERVER_ERROR"() {
+    def "Respond with INTERNAL_SERVER_ERROR if an unexpected error occurs"() {
 
         // --
         given: "a customer ID"
@@ -164,7 +176,6 @@ class CustomerControllerSpec extends BaseSpecification {
 
         and: "it should contain the error"
         error.getMessage().contains("NullPointerException")
-
     }
 
 }

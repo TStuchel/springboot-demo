@@ -9,9 +9,21 @@ import org.springframework.test.context.ActiveProfiles
 @ActiveProfiles("prod")
 class ProdAppConfigurationSpec extends BaseAppConfigurationSpec {
 
+    // ------------------------------------------------ DOCUMENTATION --------------------------------------------------
+
+    def setupSpec() {
+        reportHeader """
+        <br/>
+        The application dynamically loads configuration based on the current active profile as specified by the current
+        execution environment. This specification deals with loading production configurations.
+        <br/>
+        """
+    }
+
+
     // ------------------------------------------------ SPECIFICATIONS -------------------------------------------------
 
-    def "Loads production configuration"() {
+    def "Load production configuration"() {
 
         // --
         given: "the application configuration file has production values for all properties"

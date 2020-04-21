@@ -7,6 +7,18 @@ import org.springframework.web.context.request.WebRequest
 
 class RestExceptionHandlerSpec extends BaseSpecification {
 
+    // ------------------------------------------------ DOCUMENTATION --------------------------------------------------
+
+    def setupSpec() {
+        reportHeader """
+        <br/>
+        Exceptions thrown by the application are handled in a centralized module in order to respond with a consistent 
+        error message structure.
+        <br/>
+        """
+    }
+
+
     // ----------------------------------------------- MEMBER VARIABLES ------------------------------------------------
 
     RestExceptionHandler restExceptionHandler = new RestExceptionHandler()
@@ -14,7 +26,7 @@ class RestExceptionHandlerSpec extends BaseSpecification {
 
     // ------------------------------------------------ SPECIFICATIONS -------------------------------------------------
 
-    def "Handles Business Exception"() {
+    def "Handle Business Exception"() {
 
         // --
         given: "a BusinessException is thrown"
@@ -37,7 +49,7 @@ class RestExceptionHandlerSpec extends BaseSpecification {
         actualException.getMessage() == expectedException.getMessage()
     }
 
-    def "Handles Generic Exception"() {
+    def "Handle Generic Exception"() {
 
         // --
         given: "a generic exception is thrown"

@@ -2,4 +2,11 @@
 .idea
 bin/
 out/
-build/
+
+/build/resources/
+/build/libs/
+/build/generated/
+/build/tmp/
+/build/reports/
+/build/classes/
+/build/test-results/

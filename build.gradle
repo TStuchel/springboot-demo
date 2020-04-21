@@ -55,7 +55,11 @@ dependencies {
     testImplementation group: 'org.codehaus.groovy', name: 'groovy-all', version: groovyVersion
     testImplementation group: 'org.spockframework', name: 'spock-core', version: spockVersion
     testImplementation group: 'uk.co.jemos.podam', name: 'podam', version: '7.2.3.RELEASE'
-    testImplementation group: 'com.athaydes', name: 'spock-reports', version: '1.7.1'
+
+    // Spock Documentation
+    testImplementation(group: 'com.athaydes', name: 'spock-reports', version: '1.7.1') {
+        transitive = false // this avoids affecting your version of Groovy/Spock
+    }
 
     // Spring/Test Dependencies
     testImplementation group: 'org.springframework', name: 'spring-test'
